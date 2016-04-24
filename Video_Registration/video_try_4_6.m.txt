@@ -1,0 +1,3 @@
+clc;
+clear all;
+video_panorama_4_6('palli_video_left.mp4','palli_video_right.mp4');

@@ -1,0 +1,25 @@
+function[]=video_panorama_4_2(filename1, filename2)
+
+    video1 = VideoReader(filename1); video2=VideoReader(filename2);
+    count1=floor(video1.FrameRate*video1.Duration);
+    count2=floor(video2.FrameRate*video2.Duration);
+    n=50;
+    t=cell(n,1);
+    count1=0; count2=0;
+    while hasFrame(video1)
+        count1=count1+1;
+        if count1>n
+            break;
+        end
+        count1
+        A=readFrame(video1);
+        B=readFrame(video2);
+        temp=SURF_imageReg_4_6(A,B);
+        t{count1}=uint8(temp);
+    end
+    
+    for i=1:n
+        imshow(uint8(t{i}));
+        drawnow;   
+    end
+end
